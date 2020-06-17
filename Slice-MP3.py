@@ -1,6 +1,6 @@
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import Video
 
 
@@ -36,13 +36,15 @@ def hello(update, context):
     update.message.reply_text(
         'Hello {}'.format(update.message.from_user.first_name))
 
-def videoinstaller(update,context):
-  filetodownloaded = Video()
-  filetodownloaded.
+def videoHandler(bot,update):
+  file = bot.getFile(update.message.photo[-1].file_id)
+  print("file_id: " + str(update.message.photo.file_id))
+  file.download('image.jpg')
 
 updater = Updater('1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4', use_context=True)
 
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
+updater.dispatcher.add_handler(MessageHandler(Filters.photo, videoHandler))
+updater.dispatcher.add_handler(CommandHandler("hello", hello))
 
 updater.start_polling()
 updater.idle()
