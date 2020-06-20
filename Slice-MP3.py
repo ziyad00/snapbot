@@ -19,7 +19,7 @@ def myfunc(name,numOfVideo):
   numofVideos = 0
   required_video_file_name = name
   video_file = VideoFileClip(required_video_file_name)
-  clip_length = 60
+  clip_length = 59
   video_length = video_file.duration
   clip = int(video_length//clip_length)
   last_clip = video_length %clip_length
@@ -65,7 +65,6 @@ note: the size of the video should be less than 20 MB.
 @bot.message_handler(content_types=['video', 'audio'])
 def function_name(message):
   global numOfVideo
-  bot.reply_to(message, "This is a message handler")
   raw = message.video.file_id
   path = raw+".mp4"
   file_info = bot.get_file(raw)
