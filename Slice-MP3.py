@@ -81,7 +81,7 @@ def function_name(message):
     #  bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
 
-@server.route('/' + TOKEN, methods=['POST'])
+@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
