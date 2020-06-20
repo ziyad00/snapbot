@@ -65,6 +65,7 @@ note: the size of the video should be less than 20 MB.
 @bot.message_handler(content_types=['video', 'audio'])
 def function_name(message):
   global numOfVideo
+  bot.reply_to(message, "on progress...")
   raw = message.video.file_id
   path = raw+".mp4"
   file_info = bot.get_file(raw)
