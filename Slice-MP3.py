@@ -5,12 +5,12 @@ from telegram.ext.filters import Filters
 import telebot
 import os
 
-from flask import Flask, request
+#from flask import Flask, request
 
 from telegram import Video
 
 numOfVideo = 0
-server = Flask(__name__)
+#server = Flask(__name__)
 
 
     """
@@ -81,16 +81,16 @@ def function_name(message):
     #  bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
 """
-@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
+#@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
+#def getMessage():
+#    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+#    return "!", 200
 
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://snapbottelegram.herokuapp.com/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4")
-    return "!", 200
+#@server.route("/")
+#def webhook():
+#    bot.remove_webhook()
+#    bot.set_webhook(url='https://snapbottelegram.herokuapp.com/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4")
+#    return "!", 200
 
-#bot.polling()
+bot.polling()
 
