@@ -15,7 +15,7 @@ numOfVideo = 0
 
 
 
-"""
+
 def myfunc(name,numOfVideo):
   numofVideos = 0
   required_video_file_name = name
@@ -47,7 +47,7 @@ def myfunc(name,numOfVideo):
   else:
     numofVideos = int(video_length//clip_length)
     extract(0)
-  return numofVideos"""
+  return numofVideos
 TOEKN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
 bot = telebot.TeleBot(TOEKN)
 
@@ -63,7 +63,7 @@ note: the size of the video should be less than 20 MB.
 
 
 
-"""@bot.message_handler(content_types=['video'])
+@bot.message_handler(content_types=['video'])
 def function_name(message):
   global numOfVideo
   bot.reply_to(message, "on progress...")
@@ -73,13 +73,13 @@ def function_name(message):
   downloaded_file = bot.download_file(file_info.file_path)
   with open(path,'wb') as new_file:
     new_file.write(downloaded_file)
-  #numOfVideos = myfunc(path,numOfVideo)
- # if numOfVideos !=False:
-    #for i in range(numOfVideo, numOfVideo+numOfVideos):
-     # video = open(f'{i}.mp4', 'rb')
-      #bot.send_video(message.chat.id, video)
-    #  bot.send_video(message.chat.id, "FILEID")
-    numOfVideo+=1"""
+  numOfVideos = myfunc(path,numOfVideo)
+  if numOfVideos !=False:
+    for i in range(numOfVideo, numOfVideo+numOfVideos):
+      video = open(f'{i}.mp4', 'rb')
+      bot.send_video(message.chat.id, video)
+      bot.send_video(message.chat.id, "FILEID")
+    numOfVideo+=1
 
 #@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
 #def getMessage():
@@ -91,6 +91,7 @@ def function_name(message):
 #    bot.remove_webhook()
 #    bot.set_webhook(url='https://snapbottelegram.herokuapp.com/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4")
 #    return "!", 200
+
 
 bot.polling()
 
