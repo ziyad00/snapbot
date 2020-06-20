@@ -61,7 +61,7 @@ note: the size of the video should be less than 20 MB.
 
 
 
-@bot.message_handler(content_types=['video'])
+"""@bot.message_handler(content_types=['video'])
 def function_name(message):
   global numOfVideo
   bot.reply_to(message, "on progress...")
@@ -77,7 +77,7 @@ def function_name(message):
      # video = open(f'{i}.mp4', 'rb')
       #bot.send_video(message.chat.id, video)
     #  bot.send_video(message.chat.id, "FILEID")
-    numOfVideo+=1
+    numOfVideo+=1"""
 
 #@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
 #def getMessage():
