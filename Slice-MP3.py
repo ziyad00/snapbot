@@ -1,5 +1,5 @@
-#from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
-#from moviepy.editor import VideoFileClip
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+from moviepy.editor import VideoFileClip
 from telegram.ext import Updater, CommandHandler, MessageHandler
 from telegram.ext.filters import Filters
 import telebot
