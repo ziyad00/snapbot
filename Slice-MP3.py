@@ -1,5 +1,5 @@
-from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
-from moviepy.editor import VideoFileClip
+#from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+#from moviepy.editor import VideoFileClip
 from telegram.ext import Updater, CommandHandler, MessageHandler
 from telegram.ext.filters import Filters
 import telebot
@@ -13,7 +13,7 @@ numOfVideo = 0
 server = Flask(__name__)
 
 
-    
+    """
 
 def myfunc(name,numOfVideo):
   numofVideos = 0
@@ -46,7 +46,7 @@ def myfunc(name,numOfVideo):
   else:
     numofVideos = int(video_length//clip_length)
     extract(0)
-  return numofVideos
+  return numofVideos"""
 TOEKN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
 bot = telebot.TeleBot(TOEKN)
 
@@ -61,8 +61,8 @@ note: the size of the video should be less than 20 MB.
 
 
 
-
-@bot.message_handler(content_types=['video', 'audio'])
+"""
+@bot.message_handler(content_types=['video'])
 def function_name(message):
   global numOfVideo
   bot.reply_to(message, "on progress...")
@@ -80,7 +80,11 @@ def function_name(message):
       bot.send_video(message.chat.id, video)
     #  bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
-
+"""
+@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
 
 @server.route("/")
 def webhook():
