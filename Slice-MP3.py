@@ -53,14 +53,14 @@ bot = telebot.TeleBot(TOEKN)
 def send_welcome(message):
     bot.reply_to(message, """\
 Hi there, I am SnapBot.
-I am here to take your long video and send it to you as short videos to share it on SnapChat!.\
+I am here to take your long video and send it to youg as short videos to share it on SnapChat!.\
  Just send any long video and I'll do the rest!\
 note: the size of the video should be less than 20 MB.
 """)
 
 
 
-"""
+
 @bot.message_handler(content_types=['video'])
 def function_name(message):
   global numOfVideo
@@ -71,15 +71,14 @@ def function_name(message):
   downloaded_file = bot.download_file(file_info.file_path)
   with open(path,'wb') as new_file:
     new_file.write(downloaded_file)
-  numOfVideos = myfunc(path,numOfVideo)
-  print(numOfVideos)
-  if numOfVideos !=False:
-    for i in range(numOfVideo, numOfVideo+numOfVideos):
-      video = open(f'{i}.mp4', 'rb')
-      bot.send_video(message.chat.id, video)
+  #numOfVideos = myfunc(path,numOfVideo)
+ # if numOfVideos !=False:
+    #for i in range(numOfVideo, numOfVideo+numOfVideos):
+     # video = open(f'{i}.mp4', 'rb')
+      #bot.send_video(message.chat.id, video)
     #  bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
-"""
+
 #@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
 #def getMessage():
 #    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
