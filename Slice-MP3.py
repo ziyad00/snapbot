@@ -54,9 +54,9 @@ def myfunc(name,numOfVideo):
 def send_welcome(message):
     bot.reply_to(message, """\
 Hi there, I am SnapBot.
-I am here to take your long video and send it to youg as short videos to share it on SnapChat!.\
+I am here to take your long video and send it to you as short videos to share it on SnapChat!.\
  Just send any long video and I'll do the rest!\
-note: the size of the video should be less than 20 MB.
+note: the size of the video should be less than 20 MB and the length should be more than 59 seconds.
 """)
 
 
