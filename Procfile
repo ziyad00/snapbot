@@ -1,1 +1,1 @@
-web: python Slice-MP3.py
+web: python3 Slice-MP3.py
