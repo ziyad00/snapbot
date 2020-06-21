@@ -26,12 +26,10 @@ def myfunc(name,numOfVideo):
   clip = int(video_length//clip_length)
   last_clip = video_length %clip_length
   length = 0
-  if video_length < clip_length:
+  if int(video_length) <= clip_length:
     return False
   def extract(num):
     nonlocal length
-
-
     for time in range(0,clip+num):
       starttime = length
       if clip+num ==time:
@@ -67,7 +65,6 @@ note: the size of the video should be less than 20 MB.
 @bot.message_handler(content_types=['video'])
 def function_name(message):
   global numOfVideo
-  bot.reply_to(message, "on progress...")
   raw = message.video.file_id
   path = raw+".mp4"
   file_info = bot.get_file(raw)
@@ -76,6 +73,7 @@ def function_name(message):
     new_file.write(downloaded_file)
   numOfVideos = myfunc(path,numOfVideo)
   if numOfVideos !=False:
+    bot.reply_to(message, "on progress...")
     for i in range(numOfVideo, numOfVideo+numOfVideos):
       video = open(f'{i}.mp4', 'rb')
       bot.send_video(message.chat.id, video)
