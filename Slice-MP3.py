@@ -8,14 +8,56 @@ import os
 from flask import Flask, request
 
 from telegram import Video
-
+from aiohttp import web
+import logging
+import ssl
 numOfVideo = 0
-server = Flask(__name__)
+#server = Flask(__name__)
 
 TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
 bot = telebot.TeleBot(token=TOKEN)
 
+WEBHOOK_HOST = 'https://snapbottelegram.herokuapp.com/'
+WEBHOOK_PORT = 5000  # 443, 80, 88 or 8443 (port need to be 'open')
+WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
+WEBHOOK_SSL_CERT = './webhook_cert.pem'  # Path to the ssl certificate
+WEBHOOK_SSL_PRIV = './webhook_pkey.pem'  # Path to the ssl private key
+WEBHOOK_URL_BASE = "https://{}:{}".format(WEBHOOK_HOST, WEBHOOK_PORT)
+WEBHOOK_URL_PATH = "/{}/".format(TOKEN)
+
+logger = telebot.logger
+telebot.logger.setLevel(logging.INFO)
+app = web.Application()
+# Process webhook calls
+async def handle(request):
+    if request.match_info.get('token') == bot.token:
+        request_body_dict = await request.json()
+        update = telebot.types.Update.de_json(request_body_dict)
+        bot.process_new_updates([update])
+        return web.Response()
+    else:
+        return web.Response(status=403)
+
+
+app.router.add_post('/{token}/', handle)
+
+bot.remove_webhook()
+
+# Set webhook
+bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
+                certificate=open(WEBHOOK_SSL_CERT, 'r'))
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV)
+
+
+web.run_app(
+    app,
+    host=WEBHOOK_LISTEN,
+    port=WEBHOOK_PORT,
+    ssl_context=context,
+)
 
 def myfunc(name,numOfVideo):
   numofVideos = 0
@@ -81,7 +123,7 @@ def function_name(message):
       bot.send_video(message.chat.id, video)
       bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
-
+"""
 # SERVER SIDE 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
@@ -96,6 +138,6 @@ def webhook():
 
 if __name__ == "__main__":
   server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-
+"""
 #bot.polling()
 
