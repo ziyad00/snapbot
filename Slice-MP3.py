@@ -15,7 +15,7 @@ numOfVideo = 0
 #server = Flask(__name__)
 
 TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
-bot = telebot.TeleBot(token=TOKEN)
+bot = telebot.TeleBot(TOKEN)
 
 def myfunc(name,numOfVideo):
   numofVideos = 0
