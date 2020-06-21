@@ -5,14 +5,15 @@ from telegram.ext.filters import Filters
 import telebot
 import os
 
-#from flask import Flask, request
+from flask import Flask, request
 
 from telegram import Video
 
 numOfVideo = 0
-#server = Flask(__name__)
+server = Flask(__name__)
 
-
+TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
+bot = telebot.TeleBot(token=TOKEN)
 
 
 
@@ -49,8 +50,7 @@ def myfunc(name,numOfVideo):
     numofVideos = int(video_length//clip_length)
     extract(0)
   return numofVideos
-TOEKN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
-bot = telebot.TeleBot(TOEKN)
+
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
@@ -82,17 +82,20 @@ def function_name(message):
       bot.send_video(message.chat.id, "FILEID")
     numOfVideo+=1
 
-#@server.route('/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4", methods=['POST'])
-#def getMessage():
-#    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-#    return "!", 200
+# SERVER SIDE 
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+   bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+   return "!", 200
 
-#@server.route("/")
-#def webhook():
-#    bot.remove_webhook()
-#    bot.set_webhook(url='https://snapbottelegram.herokuapp.com/' + "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4")
-#    return "!", 200
+@server.route("/")
+def webhook():
+   bot.remove_webhook()
+   bot.set_webhook(url='<HEROKU Web URL>' + TOKEN)
+   return "!", 200
 
+if __name__ == "__main__":
+  server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
-bot.polling()
+#bot.polling()
 
