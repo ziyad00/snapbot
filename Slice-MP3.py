@@ -78,7 +78,7 @@ def function_name(message):
       for i in range(numOfVideo, numOfVideo+numOfVideos):
         video = open(f'{i}.mp4', 'rb')
         bot.send_video(message.chat.id, video)
-        bot.send_video(message.chat.id, "FILEID")
+        #bot.send_video(message.chat.id, "FILEID")
       numOfVideo+=1
   except:
     pass
