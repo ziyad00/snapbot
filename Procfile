@@ -1,1 +1,1 @@
-worker: python3 Slice-MP3.py
+worker: python Slice-MP3.py
