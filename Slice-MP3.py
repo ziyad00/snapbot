@@ -14,7 +14,7 @@ import ssl
 numOfVideo = 0
 #server = Flask(__name__)
 
-TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
+TOKEN = "TOKEN"
 bot = telebot.TeleBot(TOKEN)
 
 def myfunc(name,numOfVideo):
@@ -82,21 +82,6 @@ def function_name(message):
       numOfVideo+=1
   except:
     pass
-"""
-# SERVER SIDE 
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-   bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-   return "!", 200
 
-@server.route("/")
-def webhook():
-   bot.remove_webhook()
-   bot.set_webhook(url='https://snapbottelegram.herokuapp.com/' + TOKEN)
-   return "!", 200
-
-if __name__ == "__main__":
-  server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
-"""
 bot.polling()
 
