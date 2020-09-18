@@ -1,20 +1,11 @@
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip
-from telegram.ext import Updater, CommandHandler, MessageHandler
-from telegram.ext.filters import Filters
 import telebot
-import os
 
-from flask import Flask, request
 
-from telegram import Video
-from aiohttp import web
-import logging
-import ssl
 numOfVideo = 0
-#server = Flask(__name__)
 
-TOKEN = "TOKEN"
+TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
 bot = telebot.TeleBot(TOKEN)
 
 def myfunc(name,numOfVideo):
