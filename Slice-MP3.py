@@ -5,7 +5,7 @@ import telebot
 
 numOfVideo = 0
 
-TOKEN = "1092551482:AAGKHtbA_HDKTrTix2rK6_cfKbkk04R9Ys4"
+TOKEN = "TOKEN"
 bot = telebot.TeleBot(TOKEN)
 
 def myfunc(name,numOfVideo):
