@@ -46,7 +46,7 @@ multidict==4.7.6
 numpy==1.17.4
 opencv-python==4.2.0.34
 Pillow==6.2.1
-pipenv==2018.11.26
+pipenv==2022.1.8
 proglog==0.1.9
 psycopg2==2.8.4
 psycopg2-binary==2.8.4
